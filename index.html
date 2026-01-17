@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="SP Interior Solutions - CPQ System">
+    <title>SP Interior Solutions - CPQ System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <h1 class="header-title">SP Interior Solutions</h1>
+                <p class="header-subtitle">Configure → Price → Quote System</p>
+            </div>
+        </header>
+
+        <!-- Progress Steps -->
+        <div class="progress-container">
+            <div class="progress-steps">
+                <div class="step active" data-step="customer">
+                    <div class="step-number">1</div>
+                    <span class="step-label">Customer</span>
+                </div>
+                <div class="step-divider"></div>
+                <div class="step" data-step="items">
+                    <div class="step-number">2</div>
+                    <span class="step-label">Add Items</span>
+                </div>
+                <div class="step-divider"></div>
+                <div class="step" data-step="review">
+                    <div class="step-number">3</div>
+                    <span class="step-label">Review</span>
+                </div>
+                <div class="step-divider"></div>
+                <div class="step" data-step="quotation">
+                    <div class="step-number">4</div>
+                    <span class="step-label">Quotation</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Step 1: Customer Details -->
+            <section id="customer-section" class="section active">
+                <div class="card">
+                    <h2 class="section-title">Customer Details</h2>
+                    <form id="customer-form" class="form">
+                        <div class="form-group">
+                            <label for="customer-name" class="form-label">Name *</label>
+                            <input type="text" id="customer-name" class="form-input" placeholder="Enter customer name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="customer-address" class="form-label">Address *</label>
+                            <input type="text" id="customer-address" class="form-input" placeholder="Enter address" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="customer-phone" class="form-label">Phone *</label>
+                            <input type="tel" id="customer-phone" class="form-input" placeholder="Enter phone number" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="customer-email" class="form-label">Email (Optional)</label>
+                            <input type="email" id="customer-email" class="form-input" placeholder="Enter email">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Continue to Add Items</button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Step 2: Add Items -->
+            <section id="items-section" class="section">
+                <div class="card">
+                    <h2 class="section-title">Add Item</h2>
+                    <form id="item-form" class="form">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="item-location" class="form-label">Location *</label>
+                                <select id="item-location" class="form-input" required>
+                                    <option value="">Select location</option>
+                                    <option value="Living Room">Living Room</option>
+                                    <option value="Bedroom">Bedroom</option>
+                                    <option value="Kitchen">Kitchen</option>
+                                    <option value="Dining">Dining</option>
+                                    <option value="Laundry">Laundry</option>
+                                    <option value="Bathroom">Bathroom</option>
+                                    <option value="Office">Office</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group" id="other-location-group" style="display: none;">
+                                <label for="other-location-input" class="form-label">Specify Location *</label>
+                                <input type="text" id="other-location-input" class="form-input" placeholder="Enter custom location name">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="item-product" class="form-label">Product *</label>
+                                <select id="item-product" class="form-input" required>
+                                    <option value="">Select product</option>
+                                    <option value="Roller Blinds">Roller Blinds</option>
+                                    <option value="Roman Blinds">Roman Blinds</option>
+                                    <option value="Vertical Blinds">Vertical Blinds</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Recess / Face Fit *</label>
+                                <div class="radio-group">
+                                    <label class="radio-label">
+                                        <input type="radio" name="recess" value="Recess fit" class="radio-input">
+                                        <span>Recess fit</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="recess" value="Face fit" class="radio-input" checked>
+                                        <span>Face fit</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group" id="category-group" style="display: none;">
+                                <label for="item-category" class="form-label">Category *</label>
+                                <select id="item-category" class="form-input">
+                                    <option value="">Select category</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group" id="group-group" style="display: none;">
+                                <label for="item-group" class="form-label">Pricing Group *</label>
+                                <select id="item-group" class="form-input">
+                                    <option value="">Select group</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="item-width" class="form-label">Width (mm) *</label>
+                                <input type="number" id="item-width" class="form-input" placeholder="e.g. 546" min="1" required>
+                                <small class="form-hint" id="width-hint"></small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="item-drop" class="form-label">Drop (mm) *</label>
+                                <input type="number" id="item-drop" class="form-input" placeholder="e.g. 959" min="1" required>
+                                <small class="form-hint" id="drop-hint"></small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="item-quantity" class="form-label">Quantity *</label>
+                                <input type="number" id="item-quantity" class="form-input" value="1" min="1" required>
+                            </div>
+                        </div>
+
+                        <div class="price-preview" id="price-preview" style="display: none;">
+                            <p class="price-preview-unit">Price: $<span id="unit-price">0.00</span> per unit</p>
+                            <p class="price-preview-total">Total: $<span id="total-price">0.00</span></p>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary btn-block">
+                                <span id="item-btn-text">Add Item</span>
+                            </button>
+                            <button type="button" id="cancel-edit-btn" class="btn btn-secondary btn-block" style="display: none;">Cancel</button>
+                        </div>
+                    </form>
+
+                    <!-- Continue Button -->
+                    <div id="continue-to-review" style="display: none; margin-top: 2rem;">
+                        <button type="button" id="review-items-btn" class="btn btn-success btn-block">Continue to Review (<span id="items-added-count">0</span> items added)</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Step 3: Review Items -->
+            <section id="review-section" class="section">
+                <div class="card">
+                    <h2 class="section-title">Review Your Items</h2>
+                    
+                    <div class="table-container">
+                        <table class="items-table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Location</th>
+                                    <th>Product</th>
+                                    <th>Category</th>
+                                    <th>Size</th>
+                                    <th>Qty</th>
+                                    <th>Price</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="review-table-body">
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="review-totals">
+                        <div class="totals-row">
+                            <span>Subtotal:</span>
+                            <span>$<span id="review-subtotal">0.00</span></span>
+                        </div>
+                        <div class="totals-row">
+                            <span>GST (10%):</span>
+                            <span>$<span id="review-gst">0.00</span></span>
+                        </div>
+                        <div class="totals-row totals-total">
+                            <span>Total Payable:</span>
+                            <span>$<span id="review-total">0.00</span></span>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" id="back-to-items-btn" class="btn btn-secondary">← Back to Add Items</button>
+                        <button type="button" id="generate-quote-btn" class="btn btn-primary">Generate Quotation →</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Step 4: Quotation -->
+            <section id="quotation-section" class="section">
+                <div class="view-toggle">
+                    <button type="button" id="customer-view-btn" class="btn btn-toggle active">Customer View</button>
+                    <button type="button" id="internal-view-btn" class="btn btn-toggle">Internal View</button>
+                </div>
+
+                <div id="quotation-content" class="quotation-container">
+                    <!-- Quotation will be generated here -->
+                </div>
+
+                <div class="quotation-actions">
+                    <button type="button" id="back-to-review-btn" class="btn btn-secondary">← Back to Review</button>
+                    <button type="button" id="download-quote-btn" class="btn btn-primary">📥 Download Quotation</button>
+                    <button type="button" id="send-quote-btn" class="btn btn-success">📤 Send Quotation</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- PDF Generation Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <!-- Application Scripts -->
+    <script src="js/pricing.js"></script>
+    <script src="js/state.js"></script>
+    <script src="js/calculator.js"></script>
+    <script src="js/quotation.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
